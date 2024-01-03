@@ -38,4 +38,22 @@ public class Client {
     @OneToMany(mappedBy = "client")
     private List<CompteBancaire> comptesSansInterets;
 
+    // Méthodes
+
+    public List<String> numerosComptesAvecInterets() {
+        return numerosComptesAvecInterets;
+    }
+
+    public List<String> numerosComptesSansInterets() {
+        return numerosComptesSansInterets;
+    }
+
+    public List<CompteAvecInterets> listeComptesAvecInterets() {
+        return comptesAvecInterets;
+    }
+
+    public List<CompteBancaire> listeComptesSansInterets() {
+        return comptesSansInterets;
+    }
+
 }

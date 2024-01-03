@@ -1,63 +1,33 @@
 package bj.ifri.banker.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import bj.ifri.banker.model.Employe;
-import bj.ifri.banker.service.EmployeeService;
+import bj.ifri.banker.service.EmployeService;
 
-import lombok.Data;
-
-@Data
-@Controller
+@RestController
 public class EmployeeController {
 
 	@Autowired
-	private EmployeeService service;
+	private EmployeService employeeService;
 
-	@GetMapping("/")
-	public String home(Model model) {
-		Iterable<Employe> listEmployee = service.getEmployees();
-		model.addAttribute("employees", listEmployee);
-		return "home";
-	}
-
-	@GetMapping("/createEmployee")
-	public String createEmployee(Model model) {
-		Employe e = new Employe();
-		model.addAttribute("employee", e);
-		return "formNewEmployee";
-	}
-
-	@GetMapping("/updateEmployee/{id}")
-	public String updateEmployee(@PathVariable("id") final int id, Model model) {
-		Employe e = service.getEmployee(id);
-		model.addAttribute("employee", e);
-		return "formUpdateEmployee";
-	}
-
-	@GetMapping("/deleteEmployee/{id}")
-	public ModelAndView deleteEmployee(@PathVariable("id") final int id) {
-		service.deleteEmployee(id);
-		return new ModelAndView("redirect:/");
-	}
-
-	@PostMapping("/saveEmployee")
-	public ModelAndView saveEmployee(@ModelAttribute Employe employee) {
-		if (employee.getId() != null) {
-			// Employee from update form has the password field not filled,
-			// so we fill it with the current password.
-			Employe current = service.getEmployee(employee.getId());
-			employee.setPassword(current.getPassword());
-		}
-		service.saveEmployee(employee);
-		return new ModelAndView("redirect:/");
+	/**
+	 * Read - Get all employees
+	 * 
+	 * @return - An Iterable object of Employee full filled
+	 */
+	@GetMapping("/employees")
+	public Iterable<Employe> getEmployees() {
+		return employeeService.getEmployees();
 	}
 
 }
