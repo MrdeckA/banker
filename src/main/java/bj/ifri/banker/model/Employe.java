@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Data
@@ -15,6 +16,7 @@ import jakarta.persistence.Table;
 @NoArgsConstructor
 @Table(name = "employe")
 public class Employe {
+	@Id
 	private String nom;
 	private String prenom;
 	private String adresse;

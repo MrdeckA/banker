@@ -26,15 +26,6 @@ public class Agence {
     private String nomDirecteur;
     private String nomBanque;
 
-    @OneToMany(mappedBy = "agenceAvecInterets")
-    private List<CompteAvecInterets> comptesAvecInterets;
-
-    @OneToMany(mappedBy = "agenceSansInterets")
-    private List<CompteBancaire> comptesSansInterets;
-
-    @OneToMany(mappedBy = "agence")
-    private List<Employe> employes;
-
     // public List<String> numerosComptesAvecInterets() {
     // // Logique pour obtenir les numéros des comptes avec intérêts
     // // Retourne une liste de numéros de comptes
