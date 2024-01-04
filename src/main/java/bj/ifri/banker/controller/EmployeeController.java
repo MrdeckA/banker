@@ -37,8 +37,8 @@ public class EmployeeController {
 
 	@GetMapping("/")
 	public String home(Model model) {
-		Iterable<Employe> listEmployee = employeeService.getEmployees();
-		model.addAttribute("employees", listEmployee);
+		// Iterable<Employe> listEmployee = employeeService.getEmployees();
+		// model.addAttribute("employees", listEmployee);
 		return "home";
 	}
 

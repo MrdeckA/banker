@@ -16,7 +16,7 @@ public class BanqueService {
     @Autowired
     private BanqueRepository banqueRepository;
 
-    public Optional<Banque> getBanque(final Long id) {
+    public Optional<Banque> getBanque(final Integer id) {
         return banqueRepository.findById(id);
     }
 
@@ -24,7 +24,7 @@ public class BanqueService {
         return banqueRepository.findAll();
     }
 
-    public void deletebanque(final Long id) {
+    public void deletebanque(final  Integer id) {
         banqueRepository.deleteById(id);
     }
 

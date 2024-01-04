@@ -1,9 +1,17 @@
 package bj.ifri.banker.model;
 
+import java.util.Date;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Temporal;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,20 +23,32 @@ import lombok.NoArgsConstructor;
 @Table(name = "compte_bancaire")
 public class CompteBancaire {
 
-    @Id
+    
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "Numero", nullable = false)
     private String numero;
+
+    @Column(name = "Solde", nullable = false)
     private float solde;
-    private float dateOuverture;
-    private String nomClient;
-    private String prenomClient;
+@Temporal(TemporalType.DATE)
+   @Column(name = "DateOuverture", nullable = false)
+   private  Date dateouverture;
 
-    @ManyToOne
-    private Agence agence;
+   
+   @ManyToOne
+   @JoinColumn(name="id_client")
+   private Client client;
 
-    @ManyToOne
-    private Banque banque;
+   @ManyToOne
+   @JoinColumn(name="id_agence")
+   private Agence agence;
 
-    @ManyToOne
-    private Client client;
+   @ManyToOne
+   @JoinColumn(name="id_banque")
+   private Banque  baqnue;
+
 
 }

@@ -16,7 +16,7 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
-    public Optional<Client> getClient(final Long id) {
+    public Optional<Client> getClient(final Integer id) {
         return clientRepository.findById(id);
     }
 
@@ -24,7 +24,7 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-    public void deleteClient(final Long id) {
+    public void deleteClient(final Integer id) {
         clientRepository.deleteById(id);
     }
 

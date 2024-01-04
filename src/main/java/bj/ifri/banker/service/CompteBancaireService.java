@@ -17,7 +17,7 @@ public class CompteBancaireService {
     @Autowired
     private CompteBancaireRepository compteBancaireRepository;
 
-    public Optional<CompteBancaire> getCompteBancaire(final Long id) {
+    public Optional<CompteBancaire> getCompteBancaire(final Integer id) {
         return compteBancaireRepository.findById(id);
     }
 
@@ -25,7 +25,7 @@ public class CompteBancaireService {
         return compteBancaireRepository.findAll();
     }
 
-    public void deleteCompteBancaire(final Long id) {
+    public void deleteCompteBancaire(final Integer id) {
         compteBancaireRepository.deleteById(id);
     }
 

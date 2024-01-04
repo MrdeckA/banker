@@ -16,7 +16,7 @@ public class AgenceService {
     @Autowired
     private AgenceRepository agenceRepository;
 
-    public Optional<Agence> getAgence(final Long id) {
+    public Optional<Agence> getAgence(final Integer id) {
         return agenceRepository.findById(id);
     }
 
@@ -24,7 +24,7 @@ public class AgenceService {
         return agenceRepository.findAll();
     }
 
-    public void deleteAgence(final Long id) {
+    public void deleteAgence(final Integer id) {
         agenceRepository.deleteById(id);
     }
 

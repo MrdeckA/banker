@@ -16,7 +16,7 @@ public class EmployeService {
 	@Autowired
 	private EmployeRepository employeeRepository;
 
-	public Optional<Employe> getEmployee(final Long id) {
+	public Optional<Employe> getEmployee(final Integer id) {
 		return employeeRepository.findById(id);
 	}
 
@@ -24,7 +24,7 @@ public class EmployeService {
 		return employeeRepository.findAll();
 	}
 
-	public void deleteEmployee(final Long id) {
+	public void deleteEmployee(final Integer id) {
 		employeeRepository.deleteById(id);
 	}
 
