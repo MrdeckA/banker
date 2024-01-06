@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +23,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Controller
 @RequestMapping("clients")
+@NoArgsConstructor
 public class Client {
 
     @Autowired
@@ -38,6 +41,20 @@ public class Client {
         model.addAttribute("client", clientService.getClient(clientId));
 
         return "clients/details";
+    }
+
+    @GetMapping("/create")
+    public String goToCreatePage(Model model) {
+        // model.addAttribute("schools", clientService.get());
+        model.addAttribute("student", new Client());
+        return "clients/create";
+    }
+
+    @PostMapping("/creation")
+    public String createAction(@ModelAttribute("client") Client client) {
+        clientService.saveClient(client);
+        return "redirect:/clients/liste";
+
     }
 
 }
