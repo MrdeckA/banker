@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import bj.ifri.banker.model.Agence;
 
 @Repository
-public interface AgenceRepository extends CrudRepository<Agence, Long> {
+public interface AgenceRepository extends CrudRepository<Agence, Integer> {
 
 }

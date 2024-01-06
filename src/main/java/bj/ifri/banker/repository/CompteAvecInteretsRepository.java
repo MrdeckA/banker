@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import bj.ifri.banker.model.CompteAvecInterets;
 
 @Repository
-public interface CompteAvecInteretsRepository extends CrudRepository<CompteAvecInterets, Long> {
+public interface CompteAvecInteretsRepository extends CrudRepository<CompteAvecInterets, Integer> {
 
 }

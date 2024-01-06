@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import bj.ifri.banker.model.Employe;
 
 @Repository
-public interface EmployeRepository extends CrudRepository<Employe, Long> {
+public interface EmployeRepository extends CrudRepository<Employe, Integer> {
 
 }

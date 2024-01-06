@@ -4,11 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.ElementCollection;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -19,41 +27,43 @@ import jakarta.persistence.Table;
 @Table(name = "client")
 public class Client {
 
+  
     @Id
+    @GeneratedValue
+    private int id;
+
+    @Column(name = "Numero", nullable = false)
     private String numero;
+
+    @Column(name = "Nom", nullable = false)
     private String nom;
-    private String prenom;
-    private String adresse;
-    private String nomConseiller;
 
-    @ElementCollection
-    private List<String> numerosComptesAvecInterets;
+   @Column(name = "Prenom", nullable = false)
+   private String prenom;
 
-    @ElementCollection
-    private List<String> numerosComptesSansInterets;
+    @Column(name = "Adresse", nullable = false)
+   private String  adresse;
 
-    @OneToMany(mappedBy = "client")
-    private List<CompteAvecInterets> comptesAvecInterets;
+    @Column(name = "NomConseiller", nullable = false)
+   private String  nomconseiller;
+   
+   
+    @JsonIgnore   
+@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY, mappedBy = "client")
+	private List<CompteBancaire> CompteBancaire = new ArrayList<CompteBancaire>();
 
-    @OneToMany(mappedBy = "client")
-    private List<CompteBancaire> comptesSansInterets;
+    
+    @JsonIgnore   
+@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY, mappedBy = "client")
+	private List<CompteAvecInterets> Client = new ArrayList<CompteAvecInterets>();
 
-    // Méthodes
 
-    public List<String> numerosComptesAvecInterets() {
-        return numerosComptesAvecInterets;
-    }
+    @ManyToOne
+    @JoinColumn(name="id_employe")
+    private Employe employe;
 
-    public List<String> numerosComptesSansInterets() {
-        return numerosComptesSansInterets;
-    }
-
-    public List<CompteAvecInterets> listeComptesAvecInterets() {
-        return comptesAvecInterets;
-    }
-
-    public List<CompteBancaire> listeComptesSansInterets() {
-        return comptesSansInterets;
-    }
+    @ManyToOne
+    @JoinColumn(name="id_agence")
+    private Agence  agence;
 
 }
